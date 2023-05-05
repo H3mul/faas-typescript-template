@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "tsc --project ./",
+    "build": "./node_modules/typescript/bin/tsc --project ./",
     "start": "nodemon index.ts",
     "test": "echo \"Error: no test specified\""
   },
