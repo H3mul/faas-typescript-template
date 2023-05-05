@@ -1,5 +1,5 @@
-FROM --platform=${TARGETPLATFORM:-linux/amd64} ghcr.io/openfaas/of-watchdog:0.8.3 as watchdog
-FROM --platform=${TARGETPLATFORM:-linux/amd64} node:14-alpine as build
+FROM --platform=${TARGETPLATFORM:-linux/amd64} ghcr.io/openfaas/of-watchdog:0.9.11 as watchdog
+FROM --platform=${TARGETPLATFORM:-linux/amd64} node:18-alpine as build
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
@@ -27,7 +27,7 @@ RUN npm test
 RUN npm run build
 
 # runtime
-FROM --platform=${TARGETPLATFORM:-linux/amd64} node:14-alpine as runtime
+FROM --platform=${TARGETPLATFORM:-linux/amd64} node:18-alpine as runtime
 
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
